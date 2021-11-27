@@ -60,12 +60,13 @@ class HeroCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                superheroState
-                    ? const Text("Человек-паук", style: TextStyle(fontSize: 20.0),)
-                    : const Text("Питер Паркер", style: TextStyle(fontSize: 20.0),),
-                superheroState
-                    ? const Text("Борец с преступностью")
-                    : const Text("Обычный студент")
+                Text(
+                  superheroState ? "Человек-паук" : "Питер Паркер",
+                  style: const TextStyle(fontSize: 20.0),
+                ),
+                Text(superheroState
+                    ? "Борец с преступностью"
+                    : "Обычный студент")
               ],
             )),
       ],
@@ -83,7 +84,8 @@ class _HomePageState extends State<HomePage> {
             middle: Text("Passing superhero info")),
         child: Material(
           child: Container(
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 70.0),
+              padding:
+                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 70.0),
               child: Column(
                 children: [
                   Row(
