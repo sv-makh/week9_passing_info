@@ -36,6 +36,43 @@ class SuperState extends InheritedWidget {
       context.dependOnInheritedWidgetOfExactType<SuperState>()!.superheroState;
 }
 
+class HeroCard extends StatelessWidget {
+  @override
+  build(BuildContext context) {
+    final superheroState = SuperState.of(context) ?? false;
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        Container(
+          height: 550.0,
+          child: Image.asset(superheroState
+              ? "assets/images/Spiderman.jpg"
+              : "assets/images/PeterParker.jpg"),
+        ),
+        Container(
+            width: 200.0,
+            height: 100.0,
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                color: superheroState
+                    ? CupertinoColors.destructiveRed
+                    : CupertinoColors.extraLightBackgroundGray),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                superheroState
+                    ? const Text("Человек-паук", style: TextStyle(fontSize: 20.0),)
+                    : const Text("Питер Паркер", style: TextStyle(fontSize: 20.0),),
+                superheroState
+                    ? const Text("Борец с преступностью")
+                    : const Text("Обычный студент")
+              ],
+            )),
+      ],
+    );
+  }
+}
+
 class _HomePageState extends State<HomePage> {
   bool _superOn = false;
 
@@ -46,15 +83,15 @@ class _HomePageState extends State<HomePage> {
             middle: Text("Passing superhero info")),
         child: Material(
           child: Container(
-              padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 70.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 70.0),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("superOff"),
+                      const Text("superOff"),
                       CupertinoSwitch(
-                        activeColor: CupertinoColors.black,
+                        activeColor: CupertinoColors.destructiveRed,
                         value: _superOn,
                         onChanged: (bool value) {
                           setState(() {
@@ -62,18 +99,10 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                       ),
-                      Text("superOn")
+                      const Text("superOn")
                     ],
                   ),
-                  SuperState(
-                      superheroState: _superOn,
-                      child: Builder(builder: (BuildContext innerContext) {
-                        final superheroState =
-                            SuperState.of(innerContext) ?? false;
-                        return Image.asset(superheroState
-                            ? "assets/images/Spiderman.jpg"
-                            : "assets/images/PeterParker.jpg");
-                      }))
+                  SuperState(superheroState: _superOn, child: HeroCard())
                 ],
               )),
         ));
