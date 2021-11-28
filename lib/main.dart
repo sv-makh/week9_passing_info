@@ -37,6 +37,15 @@ class SuperState extends InheritedWidget {
 }
 
 class HeroCard extends StatelessWidget {
+  String _PetersPhoto() {
+    var list = <String>[
+      "assets/images/PeterParker.jpg",
+      "assets/images/PeterParker1.jpg",
+      "assets/images/PeterParker2.jpg"
+    ];
+    return (list..shuffle()).first;
+  }
+
   @override
   build(BuildContext context) {
     final superheroState = SuperState.of(context) ?? false;
@@ -47,7 +56,7 @@ class HeroCard extends StatelessWidget {
           height: 550.0,
           child: Image.asset(superheroState
               ? "assets/images/Spiderman.jpg"
-              : "assets/images/PeterParker.jpg"),
+              : _PetersPhoto()),
         ),
         Container(
             width: 200.0,

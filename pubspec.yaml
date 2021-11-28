@@ -63,6 +63,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/PeterParker.jpg
+    - assets/images/PeterParker1.jpg
+    - assets/images/PeterParker2.jpg
     - assets/images/Spiderman.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
