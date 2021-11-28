@@ -37,7 +37,8 @@ class SuperState extends InheritedWidget {
 }
 
 class HeroCard extends StatelessWidget {
-  String _PetersPhoto() {
+  //возвращает случайное фото
+  String _petersPhoto() {
     var list = <String>[
       "assets/images/PeterParker.jpg",
       "assets/images/PeterParker1.jpg",
@@ -48,16 +49,18 @@ class HeroCard extends StatelessWidget {
 
   @override
   build(BuildContext context) {
+    //значение переключателя из InheritedWidget
     final superheroState = SuperState.of(context) ?? false;
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
+        //фото Питера Паркера/Человека-паука
         Container(
           height: 550.0,
-          child: Image.asset(superheroState
-              ? "assets/images/Spiderman.jpg"
-              : _PetersPhoto()),
+          child: Image.asset(
+              superheroState ? "assets/images/Spiderman.jpg" : _petersPhoto()),
         ),
+        //прямоугольник с именем/псевдонимом
         Container(
             width: 200.0,
             height: 100.0,
